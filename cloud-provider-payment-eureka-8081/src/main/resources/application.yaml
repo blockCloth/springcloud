@@ -1,0 +1,47 @@
+server:
+  #修改端口号
+  port: 8081
+
+spring:
+  application:
+    #模块名
+    name: cloud-payment-service
+  #数据源配置
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #数据库类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/cloud
+
+#配置mybatis-plus
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+    # 配置MyBatis数据返回类型别名（默认别名是类名）
+  type-aliases-package: com.atguigu.springcloud.entities
+  configuration:
+    # 自动驼峰命名
+    map-underscore-to-camel-case: false
+
+# Mybatis SQL 打印(方法接口所在的包，不是Mapper.xml所在的包)
+logging:
+  level:
+    com.atguigu.springcloud.mapper: debug
+
+#注册服务（Eureka）
+eureka:
+  client:
+    #表示将自己注册进Eureka-Service
+    register-with-eureka: true
+    #从Eureka-Service中获取注册信息
+    fetch-registry: true
+    #服务url
+    service-url:
+      #可以访问的集群地址
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+  instance:
+    #定义注册名
+    instance-id: payment8081
+    #访问地址可以显示IP号
+    prefer-ip-address: true

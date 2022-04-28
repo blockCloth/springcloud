@@ -1,0 +1,22 @@
+server:
+  port: 80
+
+#自定义模块名
+spring:
+  application:
+    name: cloud-order
+
+#定义请求路径
+payment:
+  url: http://CLOUD-PAYMENT-SERVICE
+
+#注册服务（Eureka）
+eureka:
+  client:
+    #表示将自己注册进Eureka-Service
+    register-with-eureka: true
+    #从Eureka-Service中获取注册信息
+    fetch-registry: true
+    #服务url
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
